@@ -28,6 +28,17 @@ entries:
     urls:
     - https://github.com/scottrigby/charts-repo-test/releases/download/alpine-0.1.1/alpine-0.1.1.tgz
     version: 0.1.1
+  capi-kubeadm-bootstrap:
+  - apiVersion: v2
+    appVersion: 1.3.3
+    created: "2023-02-28T13:55:06.715982913Z"
+    description: A Helm Chart for the cluster-api bootstrap provider
+    digest: b7ddaa592032c003b0cd1d6e4aa3475d58d683bbe01076ecf6382296e823da5c
+    name: capi-kubeadm-bootstrap
+    type: application
+    urls:
+    - https://github.com/fire-ant/capi-kubeadm-bootstrap/releases/download/capi-kubeadm-bootstrap-1.3.3/capi-kubeadm-bootstrap-1.3.3.tgz
+    version: 1.3.3
   capmvm:
   - apiVersion: v2
     appVersion: 0.8.0
@@ -575,4 +586,4 @@ entries:
     urls:
     - https://github.com/helm/charts-repo-actions-demo/releases/download/example-v2-0.2.2/example-v2-0.2.2.tgz
     version: 0.2.2
-generated: "2023-02-28T10:58:11.320612234Z"
+generated: "2023-02-28T13:55:06.716050715Z"
