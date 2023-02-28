@@ -17,7 +17,7 @@ tasks:
       - helm package charts/capi-kubeadm-bootstrap --destination dist
       - helm push dist/capi-kubeadm-bootstrap-*.tgz oci://ghcr.io/fire-ant > .digest
       - cat .digest | awk -F "[, ]+" '/Digest/{print $NF}'
-      - cosign sign ghcr.io/fire-ant/capi-kubeadm-bootstrap@$(cat .digest | awk -F "[, ]+" '/Digest/{print }')
+      - cosign sign ghcr.io/fire-ant/capi-kubeadm-bootstrap@$(cat .digest | awk -F "[, ]+" '/Digest/{print $NF }')
     env:
       HELM_EXPERIMENTAL_OCI: 1
       COSIGN_EXPERIMENTAL: "true"
