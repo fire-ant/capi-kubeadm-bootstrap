@@ -30,6 +30,19 @@ entries:
     version: 0.1.1
   capi-kubeadm-bootstrap:
   - apiVersion: v2
+    appVersion: v1.4.0-beta.1
+    created: "2023-03-06T09:25:45.533591912Z"
+    description: A Helm Chart for the kubernetes-sigs/cluster-api
+    digest: 8b65042d06b6ffc7e7e9ca1053e1439ebca544cc5043bd4c20203c89434a6a4d
+    maintainers:
+    - email: chris@weave.works
+      name: chris
+    name: capi-kubeadm-bootstrap
+    type: application
+    urls:
+    - https://github.com/fire-ant/capi-kubeadm-bootstrap/releases/download/capi-kubeadm-bootstrap-v1.4.0-beta.1/capi-kubeadm-bootstrap-v1.4.0-beta.1.tgz
+    version: v1.4.0-beta.1
+  - apiVersion: v2
     appVersion: v1.3.4
     created: "2023-03-06T08:59:19.113292559Z"
     description: A Helm Chart for the kubernetes-sigs/cluster-api
@@ -599,4 +612,4 @@ entries:
     urls:
     - https://github.com/helm/charts-repo-actions-demo/releases/download/example-v2-0.2.2/example-v2-0.2.2.tgz
     version: 0.2.2
-generated: "2023-03-06T08:59:19.113354561Z"
+generated: "2023-03-06T09:25:45.533661226Z"
