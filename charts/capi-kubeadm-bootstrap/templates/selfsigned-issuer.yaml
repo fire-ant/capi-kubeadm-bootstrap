@@ -1,8 +1,8 @@
 apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
-  name: {{ include "bootstrap.fullname" . }}-selfsigned-issuer
+  name: {{ include "capi-kubeadm-bootstrap.fullname" . }}-selfsigned-issuer
   labels:
-  {{- include "bootstrap.labels" . | nindent 4 }}
+  {{- include "capi-kubeadm-bootstrap.labels" . | nindent 4 }}
 spec:
   selfSigned: {}

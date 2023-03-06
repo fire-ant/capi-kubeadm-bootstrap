@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "bootstrap.fullname" . }}-webhook-service
+  name: {{ include "capi-kubeadm-bootstrap.fullname" . }}-webhook-service
   labels:
     cluster.x-k8s.io/provider: bootstrap-kubeadm
-  {{- include "bootstrap.labels" . | nindent 4 }}
+  {{- include "capi-kubeadm-bootstrap.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.webhookService.type }}
   selector:
     cluster.x-k8s.io/provider: bootstrap-kubeadm
-  {{- include "bootstrap.selectorLabels" . | nindent 4 }}
+  {{- include "capi-kubeadm-bootstrap.selectorLabels" . | nindent 4 }}
   ports:
 	{{- .Values.webhookService.ports | toYaml | nindent 2 -}}
