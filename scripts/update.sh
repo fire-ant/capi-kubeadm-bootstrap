@@ -36,13 +36,12 @@ yq eval -i 'del(.spec.template.spec.containers.[].args.[] | select(test("--featu
 cmd="${cmd}" yq -i  'select( .spec.template.spec.containers.[].args += [strenv(cmd)])' ${stub}/${component}
 # bootstrap hack
 yq eval -i 'del(.spec.template.spec.containers.[].args.[] | select(test("--bootstrap-token-ttl")))' ${stub}/${component}
-bmd="--bootstrap-token-ttl={{- default \"15m\" .Values.featureGates.boostrapTokenTtl }}" yq -i  'select( .spec.template.spec.containers.[].args += [strenv(bmd)])' ${stub}/${component}
+bmd="--bootstrap-token-ttl={{- default \"15m\" .Values.featureGates.BootstrapTokenTtl }}" yq -i  'select( .spec.template.spec.containers.[].args += [strenv(bmd)])' ${stub}/${component}
 cat ${stub}/${component} | secretref="${secretref}" yq 'select(.metadata.name !=env(secretref))' | helmify -crd-dir ${dest}/${chartname}
 base="${release_tag}"                                   yq -i '(.version=strenv(base))'   ${dest}/${chartname}/${chart}
 app="${release_tag}"                                     yq -i '(.appVersion=strenv(app))' ${dest}/${chartname}/${chart}
 chartname="${chartname}"                              yq -i '(.name=strenv(chartname))' ${dest}/${chartname}/${chart}
 desc="A Helm Chart for the ${target}" yq -i '(.description=strenv(desc))'  ${dest}/${chartname}/${chart}
 maintainer="${maintainer}" owner="${owner}" yq -i '.|= ({"maintainers": [{"email": strenv(maintainer), "name": strenv(owner) }]} + .)' ${dest}/${chartname}/${chart}
-gatevals=${featurevals} yq -i '(. + {"featureGates": env(gatevals) })' ${values}
 # bootstrap hack
-gatevals="{'boostrapTokenTtl': '15m'}" yq -i '(. + {"featureGates": env(gatevals) })' ${values}
+gatevals=${featurevals} yq -i '(. + {"featureGates": env(gatevals) + {"BootstrapTokenTtl": "15m"}})' ${values}
