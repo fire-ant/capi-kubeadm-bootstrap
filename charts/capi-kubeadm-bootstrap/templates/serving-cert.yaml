@@ -1,17 +1,18 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: {{ include "bootstrap.fullname" . }}-serving-cert
+  name: {{ include "capi-kubeadm-bootstrap.fullname" . }}-serving-cert
   labels:
-  {{- include "bootstrap.labels" . | nindent 4 }}
+  {{- include "capi-kubeadm-bootstrap.labels" . | nindent 4 }}
 spec:
   dnsNames:
-  - '{{ include "bootstrap.fullname" . }}-webhook-service.{{ .Release.Namespace }}.svc'
-  - '{{ include "bootstrap.fullname" . }}-webhook-service.{{ .Release.Namespace }}.svc.{{
-    .Values.kubernetesClusterDomain }}'
+  - '{{ include "capi-kubeadm-bootstrap.fullname" . }}-webhook-service.{{ .Release.Namespace
+    }}.svc'
+  - '{{ include "capi-kubeadm-bootstrap.fullname" . }}-webhook-service.{{ .Release.Namespace
+    }}.svc.{{ .Values.kubernetesClusterDomain }}'
   issuerRef:
     kind: Issuer
-    name: '{{ include "bootstrap.fullname" . }}-selfsigned-issuer'
+    name: '{{ include "capi-kubeadm-bootstrap.fullname" . }}-selfsigned-issuer'
   secretName: capi-kubeadm-bootstrap-webhook-service-cert
   subject:
     organizations:
