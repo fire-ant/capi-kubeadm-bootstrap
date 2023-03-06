@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "bootstrap.name" -}}
+{{- define "capi-kubeadm-bootstrap.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "bootstrap.fullname" -}}
+{{- define "capi-kubeadm-bootstrap.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,16 +26,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "bootstrap.chart" -}}
+{{- define "capi-kubeadm-bootstrap.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "bootstrap.labels" -}}
-helm.sh/chart: {{ include "bootstrap.chart" . }}
-{{ include "bootstrap.selectorLabels" . }}
+{{- define "capi-kubeadm-bootstrap.labels" -}}
+helm.sh/chart: {{ include "capi-kubeadm-bootstrap.chart" . }}
+{{ include "capi-kubeadm-bootstrap.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -45,17 +45,17 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "bootstrap.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "bootstrap.name" . }}
+{{- define "capi-kubeadm-bootstrap.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "capi-kubeadm-bootstrap.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "bootstrap.serviceAccountName" -}}
+{{- define "capi-kubeadm-bootstrap.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "bootstrap.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "capi-kubeadm-bootstrap.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
