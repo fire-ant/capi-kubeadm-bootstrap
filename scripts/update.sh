@@ -36,7 +36,7 @@ yq eval -i 'del(.spec.template.spec.containers.[].args.[] | select(test("--featu
 cmd="${cmd}" yq -i  'select( .spec.template.spec.containers.[].args += [strenv(cmd)])' ${stub}/${component}
 # bootstrap hack
 yq eval -i 'del(.spec.template.spec.containers.[].args.[] | select(test("--bootstrap-token-ttl")))' ${stub}/${component}
-bmd="--bootstrap-token-ttl={{- default "15m" .Values.featureGates.boostrapTokenTtl }}" yq -i  'select( .spec.template.spec.containers.[].args += [strenv(bmd)])' ${stub}/${component}
+bmd="--bootstrap-token-ttl={{- default '15m' .Values.featureGates.boostrapTokenTtl }}" yq -i  'select( .spec.template.spec.containers.[].args += [strenv(bmd)])' ${stub}/${component}
 cat ${stub}/${component} | secretref="${secretref}" yq 'select(.metadata.name !=env(secretref))' | helmify -crd-dir ${dest}/${chartname}
 base="${release_tag}"                                   yq -i '(.version=strenv(base))'   ${dest}/${chartname}/${chart}
 app="${release_tag}"                                     yq -i '(.appVersion=strenv(app))' ${dest}/${chartname}/${chart}
